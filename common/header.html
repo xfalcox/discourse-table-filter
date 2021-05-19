@@ -1,0 +1,24 @@
+<script src="https://unpkg.com/tablefilter@0.7.2/dist/tablefilter/tablefilter.js"></script>
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/tablefilter@0.7.2/dist/tablefilter/style/tablefilter.css">
+
+<script type="text/discourse-plugin" version="0.1">
+  api.decorateCooked(
+    post => {
+      if (post.hasClass('cooked')) {
+        var tf = new TableFilter(post[0].querySelector('table'), {
+          base_path: 'https://unpkg.com/tablefilter@0.7.2/dist/tablefilter/',
+          auto_filter: {
+            delay: 1100 //milliseconds
+          },
+          filters_row_index: 1,
+          state: true,
+          msg_filter: 'Filtering...',
+          themes: [{
+            name: 'transparent'
+          }]
+        });
+        tf.init();
+      }
+    }
+  );
+</script>
